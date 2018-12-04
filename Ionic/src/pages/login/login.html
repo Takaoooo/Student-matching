@@ -4,29 +4,44 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<!--
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title> Login </ion-title>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label floating> Email </ion-label>
-      <ion-input type="email" [(ngModel)]="user.email"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating> Password </ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-    </ion-item>
-  </ion-list>
-
-  <div padding>
-    <button
-      ion-button color="primary" block round
-      (click)="login(user)"
-      [disabled]="!user.email || !user.password" > Login </button>
+  <div *ngIf="isLoggedIn; else facebookLogin">
+    <h2>Hi, {{users.name}} ({{users.email}})</h2>
+    <p>
+      Gender: {{users.gender}}
+    </p>
+    <p>
+      <img src="{{users.picture.data.url}}" width="100" alt="{{users.name}}" />
+    </p>
+    <p>
+      <button ion-button icon-right (click)="logout()">
+        Logout
+      </button>
+    </p>
   </div>
+  <ng-template #facebookLogin>
+    <button ion-button icon-right (click)="fb_login()">
+      Login with
+      <ion-icon name="logo-facebook"></ion-icon>
+    </button>
+  </ng-template>
+</ion-content>
+-->
+<ion-header>
+    <ion-navbar>
+      <ion-title>Facebook Tutorial</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div class="intro">Tap the button below to log-in with Facebook</div>
+    <div class="btn_container">
+      <button ion-button full (click)="loginAction();">Login with Facebook</button>
+    </div>
 </ion-content>
